@@ -14,7 +14,7 @@ self.addEventListener('activate', (event) => {
 
   event.waitUntil(
     caches.keys().then((cacheNames) => {
-      return Promise.all(
+      return: Promise.all(
         cacheNames.map((cacheName) => {
           if (expectedCacheNames.indexOf(cacheName) === -1) {
             // If this cache name isn't present in the array of "expected" cache names, then delete it.

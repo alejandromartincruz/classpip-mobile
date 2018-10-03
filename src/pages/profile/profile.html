@@ -34,6 +34,10 @@
       {{ 'PROFILE.EMAIL' | translate }}
       <ion-note item-right>{{ profile.email }}</ion-note>
     </ion-item>
+    <ion-item>
+      {{ 'PROFILE.EMAIL' | translate }}
+      <ion-input item-right [(ngModel)]="tok"></ion-input>
+    </ion-item>
     <ion-item class="text-primary no-border">
       {{ 'PROFILE.CHANGEPASS' | translate }}
     </ion-item>

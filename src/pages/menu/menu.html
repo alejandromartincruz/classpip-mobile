@@ -15,6 +15,9 @@
       <button menuClose ion-item (click)="goToSchool()">
         {{schoolPage.title}}
       </button>
+      <button menuClose ion-item *ngIf="myRole == role.STUDENT" (click)="vesAlaMesa()">
+        {{mesaPage.title}}
+      </button>
       <button menuClose ion-item (click)="logout()">
         {{ 'MENU.LOGOUT' | translate }}
       </button>

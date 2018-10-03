@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{mesa.nombreAula}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-row class="logo-row" *ngIf="mesa">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img [src]="mesa.imageM" width="200px" height="200px" />
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <ion-item>
+    {{ 'MESA.FILA' | translate }}
+    <ion-note item-right>{{ mesa.numFila }} </ion-note>
+  </ion-item>
+  <ion-item>
+    {{ 'MESA.COLUMNA' | translate }}
+    <ion-note item-right>{{ mesa.numColumna }} </ion-note>
+  </ion-item>
+</ion-content>

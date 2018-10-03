@@ -6,6 +6,7 @@ import { IonicService } from '../../providers/ionic.service';
 import { SchoolService } from '../../providers/school.service';
 import { StudentPage } from './student/student';
 import { Student } from '../../model/student';
+import {MesaService} from "../../providers/mesa.service";
 
 @Component({
   selector: 'page-students',
@@ -20,7 +21,8 @@ export class StudentsPage {
     public navController: NavController,
     public ionicService: IonicService,
     public schoolService: SchoolService,
-    public translateService: TranslateService) {
+    public translateService: TranslateService,
+    public mesaServices: MesaService){
 
     this.students = this.navParams.data.students;
   }

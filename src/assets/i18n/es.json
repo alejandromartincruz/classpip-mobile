@@ -37,6 +37,11 @@
   "SCHOOL": {
     "TITLE": "Mi Escuela"
   },
+  "MESA": {
+    "TITLE": "Mi mesa",
+    "FILA": "Fila",
+    "COLUMNA": "Columna"
+  },
   "PROFILE": {
     "TITLE": "Mi Perfil",
     "ACCOUNT": "Cuenta",

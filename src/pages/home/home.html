@@ -28,6 +28,15 @@
         <ion-icon name="ios-arrow-forward"></ion-icon>
       </button>
     </ion-item>
+    <ion-item *ngIf="mesa" (click)="vesAlaMesa()">
+      <ion-thumbnail item-left>
+        <img [src]="mesa.imageM">
+      </ion-thumbnail>
+      <h2>{{mesa.nombreAula}}</h2>
+      <button ion-button clear item-right icon-only>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
   </ion-list>
   <!-- TEACHERS  -->
   <ion-list no-lines *ngIf="myRole == role.TEACHER">

@@ -8,6 +8,7 @@ import { Error } from '../model/error';
 import { Login } from '../model/login';
 import { Role } from '../model/role';
 import { School } from '../model/school';
+import {Mesa} from "../model/mesa";
 
 @Injectable()
 export class UtilsService {
@@ -127,5 +128,4 @@ export class UtilsService {
   public set currentSchool(value: School) {
     this._currentSchool = value;
   }
-
 }

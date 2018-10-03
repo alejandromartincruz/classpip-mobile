@@ -12,6 +12,10 @@ import { SchoolPage } from '../../pages/school/school';
 import { ProfilePage } from '../../pages/profile/profile';
 import { Page } from '../../model/page';
 import { School } from '../../model/school';
+import {MesaService} from "../../providers/mesa.service";
+import {MesaPage} from "../mesa/mesa";
+import {Mesa} from "../../model/mesa";
+import {Role} from "../../model/role";
 
 @Component({
   selector: 'page-menu',
@@ -24,6 +28,10 @@ export class MenuPage {
   public rootPage: Component;
   public homePage: Page;
   public schoolPage: Page;
+  public mesaPage: Page;
+
+  public myRole: Role;
+  public role = Role;
 
   constructor(
     public navController: NavController,
@@ -31,11 +39,14 @@ export class MenuPage {
     public utilsService: UtilsService,
     public ionicService: IonicService,
     public schoolService: SchoolService,
+    public mesaService: MesaService,
     private loginService: LoginService) {
 
     this.rootPage = HomePage;
     this.homePage = new Page(HomePage, this.translateService.instant('HOME.TITLE'));
     this.schoolPage = new Page(SchoolPage, this.translateService.instant('SCHOOL.TITLE'));
+    this.mesaPage = new Page(MesaPage,this.translateService.instant('MESA.TITLE'));
+    this.myRole = this.utilsService.role;
   }
   /**
    * Method for opening a page
@@ -78,4 +89,15 @@ export class MenuPage {
       });
   }
 
+  public vesAlaMesa(): void {
+
+    this.ionicService.showLoading(this.translateService.instant('APP.WAIT'));
+
+    this.mesaService.getMyMesa().subscribe(
+      ((value: Mesa) => this.navController.push(MesaPage, { mesa: value })),
+      error => {
+        this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error);
+        this.ionicService.removeLoading();
+      });
+  }
 }

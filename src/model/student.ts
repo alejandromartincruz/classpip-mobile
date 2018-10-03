@@ -10,15 +10,17 @@ export class Student {
   private _schoolId: number;
   private _avatarId: number;
   private _avatar: Avatar;
+  private _mesaId: number;
 
   constructor(name?: string, surname?: string, username?: string,
-    email?: string, schoolId?: number, avatarId?: number) {
+    email?: string, schoolId?: number, avatarId?: number, mesaId?: number) {
     this._name = name;
     this._surname = surname;
     this._username = username;
     this._email = email;
     this._schoolId = schoolId;
     this._avatarId = avatarId;
+    this._mesaId = mesaId;
   }
 
   /* tslint:disable */
@@ -33,6 +35,7 @@ export class Student {
       result.email = object.email;
       result.schoolId = object.schoolId;
       result.avatarId = object.avatarId;
+      result.mesaId = object.mesaId;
     }
     return result;
   }
@@ -103,6 +106,14 @@ export class Student {
 
   public set avatarId(value: number) {
     this._avatarId = value;
+  }
+
+  public get mesaId(){
+    return this._mesaId;
+  }
+
+  public set mesaId(value: number) {
+    this._mesaId = value;
   }
 
 	public get avatar(): Avatar {

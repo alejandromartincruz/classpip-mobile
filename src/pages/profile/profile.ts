@@ -18,6 +18,7 @@ export class ProfilePage {
 
   public profile: Profile;
   public appVersion: string;
+  public tok: string;
 
   constructor(
     public ionicService: IonicService,
@@ -65,7 +66,10 @@ export class ProfilePage {
       refresher ? refresher.complete() : null;
       this.ionicService.removeLoading();
     }).subscribe(
-      ((value: Profile) => this.profile = value),
+      ((value: Profile) => {
+        this.profile = value;
+        this.tok = this.userService.utilsService.currentUser.id;
+      }),
       error => this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
   }
 

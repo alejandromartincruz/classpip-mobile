@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController, Refresher, NavController, PopoverController, Platform } from 'ionic-angular';
+import {MenuController, Refresher, NavController, PopoverController, Platform, ToastController} from 'ionic-angular';
 import { CallNumber, InAppBrowser } from 'ionic-native';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
@@ -17,6 +17,9 @@ import { PopoverPage } from '../../pages/home/popover/popover';
 import { TeachersPage } from '../../pages/teachers/teachers';
 import { StudentsPage } from '../../pages/students/students';
 import { GroupPage } from '../../pages/group/group';
+import {MesaPage} from "../mesa/mesa";
+import {Mesa} from "../../model/mesa";
+import {MesaService} from "../../providers/mesa.service";
 
 @Component({
   selector: 'page-home',
@@ -25,6 +28,7 @@ import { GroupPage } from '../../pages/group/group';
 export class HomePage {
 
   public school: School;
+  public mesa: Mesa;
   public teachersCount: number;
   public studentsCount: number;
   public groups: Array<Group>;
@@ -41,9 +45,9 @@ export class HomePage {
     public translateService: TranslateService,
     public popoverController: PopoverController,
     public menuController: MenuController,
-    public navController: NavController) {
+    public navController: NavController,
+    public mesaService: MesaService) {
   }
-
   /**
    * Fires when the page appears on the screen.
    * Used to get all the data needed in page
@@ -65,7 +69,6 @@ export class HomePage {
    * @param {Refresher} Refresher element
    */
   private getHomeInfo(refresher?: Refresher): void {
-
     // if the user is the SCHOOLADMIN get more information abaout the school
     // and the members
     if (this.myRole === Role.SCHOOLADMIN) {
@@ -110,8 +113,20 @@ export class HomePage {
         refresher ? refresher.complete() : null;
         this.ionicService.removeLoading();
       }).subscribe(
-        ((value: School) => this.school = value),
+        ((value: School) => {
+          this.school = value;
+
+            this.mesaService.getMyMesa().subscribe(
+              ((value: Mesa) => {
+                this.mesa = value
+              }),
+              error => this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
+          }
+
+        ),
         error => this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
+
+
     }
   }
 
@@ -199,6 +214,22 @@ export class HomePage {
 
     this.schoolService.getMySchool().subscribe(
       ((value: School) => this.navController.push(SchoolPage, { school: value })),
+      error => {
+        this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error);
+        this.ionicService.removeLoading();
+      });
+  }
+
+  /**
+   * Method called from the home page to open the details of the
+   * school of the current user
+   */
+  public vesAlaMesa(): void {
+
+    this.ionicService.showLoading(this.translateService.instant('APP.WAIT'));
+
+    this.mesaService.getMyMesa().subscribe(
+      ((value: Mesa) => this.navController.push(MesaPage, { mesa: value })),
       error => {
         this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error);
         this.ionicService.removeLoading();

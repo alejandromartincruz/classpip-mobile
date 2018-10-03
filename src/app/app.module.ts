@@ -22,6 +22,7 @@ import { TeacherPage } from '../pages/teachers/teacher/teacher';
 import { StudentsPage } from '../pages/students/students';
 import { StudentPage } from '../pages/students/student/student';
 import { GroupPage } from '../pages/group/group';
+import {MesaPage} from "../pages/mesa/mesa";
 
 // pipes
 import { OrderByIdPipe } from '../pipes/order-by-id.pipe';
@@ -39,6 +40,7 @@ import { MatterService } from '../providers/matter.service';
 import { SchoolService } from '../providers/school.service';
 import { UserService } from '../providers/user.service';
 import { UtilsService } from '../providers/utils.service';
+import {MesaService} from "../providers/mesa.service";
 
 // rxjs
 import 'rxjs/add/operator/map';
@@ -47,6 +49,8 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/forkJoin';
+
+
 
 export function exportTranslateStaticLoader(http: Http) {
   return new TranslateStaticLoader(http, AppConfig.LANG_PATH, AppConfig.LANG_EXT);
@@ -61,6 +65,7 @@ export function exportTranslateStaticLoader(http: Http) {
     HomePage,
     RoleSelectPage,
     SchoolPage,
+    MesaPage,
     PopoverPage,
     ProfilePage,
     TermsPage,
@@ -91,6 +96,7 @@ export function exportTranslateStaticLoader(http: Http) {
     HomePage,
     RoleSelectPage,
     SchoolPage,
+    MesaPage,
     PopoverPage,
     ProfilePage,
     TermsPage,
@@ -110,6 +116,7 @@ export function exportTranslateStaticLoader(http: Http) {
     LoginService,
     MatterService,
     SchoolService,
+    MesaService,
     UserService,
     UtilsService,
   ]
